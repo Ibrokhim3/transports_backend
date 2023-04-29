@@ -44,4 +44,9 @@ CREATE TABLE permissions(
 
 
 
+INSERT INTO branches(branch_name, branch_address) VALUES ('Andijon filiali', 'Andijon sh., Nurafshon ko"chasi, 45-b');
+  
+
+
+
 
