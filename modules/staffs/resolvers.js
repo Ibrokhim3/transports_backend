@@ -1,10 +1,11 @@
-const { getStaffs, registration } = require("./model");
+const { getStaffs, registration, login } = require("./model");
 
 module.exports = {
   Query: {
     staffs: async () => await getStaffs(),
   },
   Mutation: {
-    registration: (_, args) => registration(args),
+    registration: async (_, args) => await registration(args),
+    login: async (_, args)=> await login(args)
   },
 };

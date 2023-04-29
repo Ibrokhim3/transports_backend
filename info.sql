@@ -45,7 +45,15 @@ CREATE TABLE permissions(
 
 
 INSERT INTO branches(branch_name, branch_address) VALUES ('Andijon filiali', 'Andijon sh., Nurafshon ko"chasi, 45-b');
-  
+
+
+CREATE TABLE jwt(
+  staff_id VARCHAR,
+  token VARCHAR UNIQUE
+);
+
+ALTER TABLE jwt
+DROP CONSTRAINT jwt_staff_id_key (staff_id);
 
 
 
