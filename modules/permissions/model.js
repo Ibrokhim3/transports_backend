@@ -1,6 +1,7 @@
+const { verify } = require("../../utils/jwt");
 const pool = require("../../db/db_config");
 
-const createPermissionPms = async ({ staff_id }) => {
+const createPermissionPms = async ({ staff_id }, token) => {
   const staffId = await pool.query(
     `SELECT staff_id FROM staffs where staff_id=$1`,
     [staff_id]
@@ -10,9 +11,13 @@ const createPermissionPms = async ({ staff_id }) => {
     return { msg: "Staff doesn't exist" };
   }
 
+  const staffInfo = verify(token);
+
+  console.log(staffInfo.staff_id);
+
   const permission = await pool.query(
     `SELECT create_p FROM permission_pms where staff_id=$1`,
-    [staff_id]
+    [staffInfo.staff_id]
   );
 
   if (permission.rows[0].create_p === false) {

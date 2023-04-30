@@ -10,7 +10,13 @@ app.use(express.json());
 dotenv.config();
 
 const startApolloServer = async () => {
-  const server = new ApolloServer({ modules });
+  const server = new ApolloServer({
+    modules,
+    context: ({ req }) => {
+      const token = req.headers.token || "";
+      return {token};
+    },
+  });
 
   await server.start();
 

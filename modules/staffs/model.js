@@ -69,10 +69,16 @@ const login = async ({ username, password }) => {
 
   const token = sign({ staff_id });
 
-  await pool.query(`INSERT INTO jwt(staff_id, token) VALUES($1,$2)`, [
-    staff_id,
-    token,
-  ]);
+  const jwtInfo = await pool.query(`SELECT * FROM jwt`);
+
+  if (!jwtInfo.rows[0]) {
+    await pool.query(`INSERT INTO jwt(staff_id, token) VALUES($1,$2)`, [
+      staff_id,
+      token,
+    ]);
+  }
+
+  await pool.query(`UPDATE jwt SET staff_id=$1, token=$2`, [staff_id, token]);
 
   return { msg: "You're successfully logged in!", token };
 };
