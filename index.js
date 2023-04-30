@@ -1,8 +1,8 @@
-const express = require("express")
-const cors = require("cors")
-const dotenv = require("dotenv")
-const {ApolloServer} = require("apollo-server-express")
-const modules = require("./modules")
+const express = require("express");
+const cors = require("cors");
+const dotenv = require("dotenv");
+const { ApolloServer } = require("apollo-server-express");
+const modules = require("./modules");
 
 const app = express();
 app.use(cors());

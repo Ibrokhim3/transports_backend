@@ -32,6 +32,23 @@ const registration = async ({
     [username, birth_date, gender, branch, pswHash]
   );
 
+  const staff_id = await pool.query(
+    `SELECT staff_id from staffs where username=$1`,
+    [username]
+  );
+
+  await pool.query(`INSERT INTO permission_pms(staff_id) VALUES($1)`, [
+    staff_id.rows[0].staff_id,
+  ]);
+
+  await pool.query(`INSERT INTO branch_pms(staff_id) VALUES($1)`, [
+    staff_id.rows[0].staff_id,
+  ]);
+
+  await pool.query(`INSERT INTO transport_pms(staff_id) VALUES($1)`, [
+    staff_id.rows[0].staff_id,
+  ]);
+
   return { msg: "You're successfully registrated as a staff" };
 };
 

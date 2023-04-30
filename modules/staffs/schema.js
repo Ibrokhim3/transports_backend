@@ -9,7 +9,7 @@ module.exports = gql`
     branch: String!
   }
 
-  type Message {
+  type StaffMessage {
     msg: String!
   }
 
@@ -22,7 +22,7 @@ module.exports = gql`
     staffs: [Staff!]
   }
 
-  type Mutation {
+  extend type Mutation {
     getStaff(staffId: String!): Staff
     registration(
       username: String!
@@ -31,7 +31,7 @@ module.exports = gql`
       repeat_password: String!
       birth_date: String!
       gender: String!
-    ): Message
+    ): StaffMessage
     login(username: String!, password: String!): Token
   }
 `;
