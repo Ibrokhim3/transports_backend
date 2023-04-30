@@ -10,6 +10,13 @@ module.exports = gql`
   }
 
   type Mutation {
-    permission(staff_id: ID!): Message
+    createPermissionPmsOn(staff_id: ID!): Message
+    readPermissionPmsOn(staff_id: ID!): Message
+    updatePermissionPmsOn(staff_id: ID!): Message
+    deletePermissionPmsOn(staff_id: ID!): Message
+    createPermissionPmsOff(staff_id: ID!): Message
+    readPermissionPmsOff(staff_id: ID!): Message
+    updatePermissionPmsOff(staff_id: ID!): Message
+    deletePermissionPmsOff(staff_id: ID!): Message
   }
 `;

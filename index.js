@@ -13,8 +13,8 @@ const startApolloServer = async () => {
   const server = new ApolloServer({
     modules,
     context: ({ req }) => {
-      const token = req.headers.token || "";
-      return {token};
+      const token = req.headers.token;
+      return { token };
     },
   });
 
